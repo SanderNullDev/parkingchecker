@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0288d1</color>
+    <color name="colorPrimaryDark">#01579b</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="capacity_normal">#00c853</color>
+    <color name="capacity_busy">#ffd600</color>
+    <color name="capacity_almost_full">#ff6f00</color>
+    <color name="capacity_full">#d50000</color>
+</resources>
