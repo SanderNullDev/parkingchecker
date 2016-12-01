@@ -11,6 +11,7 @@ import com.mikepenz.fastadapter.items.AbstractItem;
 import java.util.List;
 
 import nl.blackcatapps.pchecker.R;
+import nl.blackcatapps.pchecker.Utils;
 
 /**
  * Created by Sander on 26-11-2016.
@@ -80,9 +81,9 @@ public class ParkingData extends AbstractItem<ParkingData, ParkingData.ViewHolde
     }
 
     public boolean getFull() {
-        if(full.equals("0")){
+        if (full.equals("0")) {
             return false;
-        }else{
+        } else {
             return true;
         }
 
@@ -93,9 +94,9 @@ public class ParkingData extends AbstractItem<ParkingData, ParkingData.ViewHolde
     }
 
     public boolean getOpen() {
-        if(open.equals("0")){
+        if (open.equals("0")) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -154,22 +155,43 @@ public class ParkingData extends AbstractItem<ParkingData, ParkingData.ViewHolde
                 Integer.parseInt(getParking_capacity()),
                 Integer.parseInt(getVacant_spaces()));
 
+        int color;
 
-        if(percentage < 40 && percentage > 15){
-            viewHolder.numberProgressBar.setReachedBarColor(Color.parseColor("#ffd600"));
-        }else if(percentage <= 15){
-            viewHolder.numberProgressBar.setReachedBarColor(Color.parseColor("#FFFF6F00"));
+        if (percentage >= 40) {
+            color = Color.parseColor("#00c853");
+            viewHolder.numberProgressBar.setReachedBarColor(color);
+            viewHolder.free_spots.setTextColor(color);
         }
-        if(Integer.parseInt(full) == 1){
-            viewHolder.numberProgressBar.setReachedBarColor(Color.parseColor("#d50000"));
+
+
+        if (percentage < 40 && percentage > 15) {
+            color = Color.parseColor("#ffd600");
+            viewHolder.numberProgressBar.setReachedBarColor(color);
+            viewHolder.free_spots.setTextColor(color);
+        } else if (percentage <= 15 && percentage > 5) {
+            color = Color.parseColor("#FFFF6F00");
+            viewHolder.numberProgressBar.setReachedBarColor(color);
+            viewHolder.free_spots.setTextColor(color);
         }
+        if (Integer.parseInt(full) == 1 || percentage <= 5) {
+            color = Color.parseColor("#d50000");
+            viewHolder.numberProgressBar.setReachedBarColor(color);
+            viewHolder.free_spots.setTextColor(color);
+        }
+
+        viewHolder.free_spots.setText(getVacant_spaces());
 
         viewHolder.numberProgressBar.setProgress(percentage);
         viewHolder.numberProgressBar.invalidate();
 
         String message = "Er zijn nog %s parkeerplaatsen van de %s beschikbaar.";
-        message  = String.format(message, getVacant_spaces(),getParking_capacity());
+        message = String.format(message, getVacant_spaces(), getParking_capacity());
         viewHolder.message.setText(message);
+
+
+        String lastUpdate = "Laatste update: %s";
+        lastUpdate = String.format(lastUpdate, Utils.getDate(Long.parseLong(getLast_updated()) * 1000));
+        viewHolder.last_update.setText(lastUpdate);
 
 
     }
@@ -180,18 +202,18 @@ public class ParkingData extends AbstractItem<ParkingData, ParkingData.ViewHolde
         super.unbindView(holder);
         holder.name.setText(null);
         holder.numberProgressBar.setProgress(0);
+        holder.free_spots.setText(null);
     }
 
-    private int calculatePercentageFree(int total, int free){
+    private int calculatePercentageFree(int total, int free) {
         float percent = (free * 100.0f) / total;
         return (int) percent;
     }
 
 
-
     //The viewHolder used for this item. This viewHolder is always reused by the RecyclerView so scrolling is blazing fast
     protected static class ViewHolder extends RecyclerView.ViewHolder {
-        protected TextView name, message;
+        protected TextView name, message, free_spots, last_update;
         protected NumberProgressBar numberProgressBar;
 
         public ViewHolder(View view) {
@@ -199,6 +221,9 @@ public class ParkingData extends AbstractItem<ParkingData, ParkingData.ViewHolde
             this.name = (TextView) view.findViewById(R.id.garage_title);
             this.numberProgressBar = (NumberProgressBar) view.findViewById(R.id.garage_progress);
             this.message = (TextView) view.findViewById(R.id.garage_message);
+            this.free_spots = (TextView) view.findViewById(R.id.garage_free_spots);
+            this.last_update = (TextView) view.findViewById(R.id.garage_update);
+
         }
     }
 }

@@ -3,9 +3,10 @@
     <color name="colorPrimary">#0288d1</color>
     <color name="colorPrimaryDark">#01579b</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="dark_text">#414141</color>
 
     <color name="capacity_normal">#00c853</color>
-    <color name="capacity_busy">#ffd600</color>
-    <color name="capacity_almost_full">#ff6f00</color>
-    <color name="capacity_full">#d50000</color>
+    <color name="capacity_busy">#ffc400</color>
+    <color name="capacity_almost_full">#e77500</color>
+    <color name="capacity_full">#c10000</color>
 </resources>
