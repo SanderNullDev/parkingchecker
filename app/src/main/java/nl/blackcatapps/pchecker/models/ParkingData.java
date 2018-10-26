@@ -1,6 +1,8 @@
 package nl.blackcatapps.pchecker.models;
 
 import android.graphics.Color;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
@@ -195,6 +197,11 @@ public class ParkingData extends AbstractItem<ParkingData, ParkingData.ViewHolde
         viewHolder.last_update.setText(lastUpdate);
 
 
+    }
+
+    @Override
+    public ViewHolder getViewHolder(@NonNull View v) {
+        return new ViewHolder(v);
     }
 
     //reset the view here (this is an optional method, but recommended)
