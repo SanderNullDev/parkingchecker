@@ -1,7 +1,8 @@
 package nl.blackcatapps.pchecker.models;
 
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -184,9 +185,9 @@ public class ParkingData extends AbstractItem<ParkingData, ParkingData.ViewHolde
         viewHolder.numberProgressBar.setProgress(percentage);
         viewHolder.numberProgressBar.invalidate();
 
-        String message = "Er zijn nog %s parkeerplaatsen van de %s beschikbaar.";
+        String message = "Er zijn nog <b>%s</b> parkeerplaatsen van de %s beschikbaar.";
         message = String.format(message, getVacant_spaces(), getParking_capacity());
-        viewHolder.message.setText(message);
+        viewHolder.message.setText(Html.fromHtml((message)));
 
 
         String lastUpdate = "Laatste update: %s";

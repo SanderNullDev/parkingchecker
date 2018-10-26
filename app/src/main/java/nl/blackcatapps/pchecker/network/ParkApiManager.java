@@ -33,7 +33,7 @@ public class ParkApiManager {
     public ParkApiManager(){
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.blackcatapps.nl/parkingdata/api/")
+                .baseUrl("http://www.blackcatapps.nl/parkingdata/api/")
                 .client(getOkHttpClient())
         	                .addConverterFactory(GsonConverterFactory.create())
         	                .build();

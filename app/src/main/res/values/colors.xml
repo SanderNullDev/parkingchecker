@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0288d1</color>
-    <color name="colorPrimaryDark">#01579b</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="dark_text">#414141</color>
+    <color name="colorPrimary">#dd4834</color>
+    <color name="colorPrimaryDark">#b33424</color>
+    <color name="colorAccent">#FFFF4081</color>
+    <color name="dark_text">#ff3c3c3c</color>
+    <color name="main_background">#ff3c3c3c</color>
 
-    <color name="capacity_normal">#00c853</color>
-    <color name="capacity_busy">#ffc400</color>
-    <color name="capacity_almost_full">#e77500</color>
-    <color name="capacity_full">#c10000</color>
 </resources>

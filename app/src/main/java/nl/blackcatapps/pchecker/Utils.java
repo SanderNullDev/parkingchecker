@@ -14,7 +14,7 @@ public class Utils {
 
     public static String getDate(long time) {
 
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm dd-MM-yyyy");
         format.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date d = new Date(time);
         return format.format(d);
